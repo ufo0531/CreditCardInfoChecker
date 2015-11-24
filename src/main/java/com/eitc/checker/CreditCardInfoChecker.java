@@ -79,8 +79,8 @@ public class CreditCardInfoChecker {
                     LOGGER.log(Level.INFO, "查詢資料→ID：{0}", id);
                     try {
                         HttpResponse<String> response = Unirest.get(apiUrl + bin).asString();
-                        String result = id + "," + response.getBody();
-                        result = StringUtils.join(result.split(","), ",", 0, 8) + ",\r\n";
+                        String result = response.getBody();
+                        result = id + "," + StringUtils.join(result.split(","), ",", 1, 8) + ",\r\n";
                         Files.write(outputFile, result.replace("\"", "").getBytes(), APPEND);
                     } catch (UnirestException ex) {
                         LOGGER.log(Level.SEVERE, "呼叫api錯誤", ex);
