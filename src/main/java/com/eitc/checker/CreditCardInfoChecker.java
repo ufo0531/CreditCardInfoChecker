@@ -80,7 +80,7 @@ public class CreditCardInfoChecker {
                     try {
                         HttpResponse<String> response = Unirest.get(apiUrl + bin).asString();
                         String result = response.getBody();
-                        result = id + "," + StringUtils.join(result.split(","), ",", 1, 8) + ",\r\n";
+                        result = id + "," + StringUtils.join(result.split(","), ",", 1, 7) + ",\r\n";
                         Files.write(outputFile, result.replace("\"", "").getBytes(), APPEND);
                     } catch (UnirestException ex) {
                         LOGGER.log(Level.SEVERE, "呼叫api錯誤", ex);
